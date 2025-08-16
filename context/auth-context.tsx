@@ -9,6 +9,19 @@ const AuthContext = createContext({
   isLoading: true,
 });
 
+/**
+ * AuthProvider component
+ *
+ * A React context provider that wraps its children with authentication state and
+ * provides functions to set the authentication token and handle navigation based
+ * on the token value.
+ *
+ * @param {Object} props - The props object containing the children React node.
+ * @param {React.ReactNode} props.children - The children React node to be wrapped
+ * with the authentication state.
+ * @return {React.ReactElement} The AuthContext.Provider React element wrapping
+ * the children with the authentication state.
+ */
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // State to hold the authentication token
   const [token, setToken] = useState<string | null>(null);

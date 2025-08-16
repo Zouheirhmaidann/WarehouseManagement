@@ -19,6 +19,18 @@ interface CardComponentProps {
   screenRoute?: string;
 }
 
+/**
+ * CardComponent is a React component that renders a clickable card with an icon,
+ * title, and optional navigation to a screen.
+ *
+ * @param {LucideIcon} icon - The icon component to render in the card.
+ * @param {string} iconWrapperColor - The background color of the icon wrapper.
+ * @param {string} title - The title of the card.
+ * @param {boolean} [isFunctional=true] - Whether the card is functional and can be clicked.
+ * @param {string} [screenRoute] - The route to navigate to when the card is clicked.
+ * @param {ViewStyle} [style] - Additional styles to apply to the container.
+ * @return {React.ReactElement} The rendered CardComponent.
+ */
 const CardComponent = ({
   icon: Icon,
   iconWrapperColor,

@@ -1,4 +1,4 @@
-import { MotiView, AnimatePresence } from "moti";
+import { AnimatePresence, MotiView } from "moti";
 import { MotiPressable } from "moti/interactions";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { Easing } from "react-native-reanimated";
@@ -9,6 +9,16 @@ type LogoutPopupProps = {
   onCancel: () => void;
 };
 
+/**
+ * LogoutPopup Component
+ *
+ * A React component that renders a confirmation popup for logout.
+ * @param {LogoutPopupProps} props - The props for the LogoutPopup component
+ * @param {boolean} props.isVisible - Whether the popup is visible or not
+ * @param {function} props.onConfirm - The function to handle confirmation
+ * @param {function} props.onCancel - The function to handle cancellation
+ * @returns {JSX.Element} A confirmation popup for logout
+ */
 export const LogoutPopup = ({
   isVisible,
   onConfirm,
@@ -17,70 +27,72 @@ export const LogoutPopup = ({
   return (
     <AnimatePresence>
       {isVisible && (
-    <MotiView
-      from={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ type: "timing", duration: 200 }}
-      style={styles.overlayContainer}
-    >
-      <Pressable style={styles.pressable} onPress={onCancel}>
         <MotiView
-          style={styles.popup}
-          from={{
-            opacity: 0,
-            scale: 0.9,
-            translateY: 20,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            translateY: 0,
-          }}
-          exit={{
-            opacity: 0,
-            scale: 0.9,
-            translateY: 10,
-          }}
-          transition={{
-            type: "timing",
-            duration: 250,
-            easing: Easing.inOut(Easing.ease),
-          }}
+          from={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ type: "timing", duration: 200 }}
+          style={styles.overlayContainer}
         >
-          <Text style={styles.title}>Logout</Text>
-          <Text style={styles.message}>Are you sure you want to logout?</Text>
-          <MotiView style={styles.buttonContainer}>
-            <MotiPressable
-              onPress={onCancel}
-              animate={({ pressed }) => ({
-                scale: pressed ? 0.95 : 1,
-                opacity: pressed ? 0.9 : 1,
-              })}
-              transition={{ type: "timing", duration: 100 }}
-              style={[styles.button, styles.cancelButton]}
+          <Pressable style={styles.pressable} onPress={onCancel}>
+            <MotiView
+              style={styles.popup}
+              from={{
+                opacity: 0,
+                scale: 0.9,
+                translateY: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                translateY: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.9,
+                translateY: 10,
+              }}
+              transition={{
+                type: "timing",
+                duration: 250,
+                easing: Easing.inOut(Easing.ease),
+              }}
             >
-              <Text style={[styles.buttonText, styles.cancelButtonText]}>
-                Cancel
+              <Text style={styles.title}>Logout</Text>
+              <Text style={styles.message}>
+                Are you sure you want to logout?
               </Text>
-            </MotiPressable>
-            <MotiPressable
-              onPress={onConfirm}
-              animate={({ pressed }) => ({
-                scale: pressed ? 0.95 : 1,
-                opacity: pressed ? 0.9 : 1,
-              })}
-              transition={{ type: "timing", duration: 100 }}
-              style={[styles.button, styles.confirmButton]}
-            >
-              <Text style={[styles.buttonText, styles.confirmButtonText]}>
-                Confirm
-              </Text>
-            </MotiPressable>
-          </MotiView>
+              <MotiView style={styles.buttonContainer}>
+                <MotiPressable
+                  onPress={onCancel}
+                  animate={({ pressed }) => ({
+                    scale: pressed ? 0.95 : 1,
+                    opacity: pressed ? 0.9 : 1,
+                  })}
+                  transition={{ type: "timing", duration: 100 }}
+                  style={[styles.button, styles.cancelButton]}
+                >
+                  <Text style={[styles.buttonText, styles.cancelButtonText]}>
+                    Cancel
+                  </Text>
+                </MotiPressable>
+                <MotiPressable
+                  onPress={onConfirm}
+                  animate={({ pressed }) => ({
+                    scale: pressed ? 0.95 : 1,
+                    opacity: pressed ? 0.9 : 1,
+                  })}
+                  transition={{ type: "timing", duration: 100 }}
+                  style={[styles.button, styles.confirmButton]}
+                >
+                  <Text style={[styles.buttonText, styles.confirmButtonText]}>
+                    Confirm
+                  </Text>
+                </MotiPressable>
+              </MotiView>
+            </MotiView>
+          </Pressable>
         </MotiView>
-      </Pressable>
-    </MotiView>
       )}
     </AnimatePresence>
   );

@@ -13,6 +13,23 @@ interface CustomTextFieldProps {
   showClear?: boolean;
 }
 
+/**
+ * CustomTextField component
+ *
+ * A React functional component that renders a customized text input field with an icon.
+ * It accepts various props to customize its behavior and appearance.
+ *
+ * @param {CustomTextFieldProps} props - The props for the CustomTextField component
+ * @param {string} props.value - The value of the text input field
+ * @param {function} props.onChangeText - The function to handle text input changes
+ * @param {string} props.placeholder - The placeholder text for the text input field
+ * @param {boolean} [props.isPassword=false] - Indicates if the text input field is for password entry
+ * @param {React.ComponentType} props.Icon - The icon component to display next to the text input field
+ * @param {string} [props.autoCapitalize="none"] - The auto-capitalization behavior for the text input field
+ * @param {function} [props.onClear] - The function to handle clearing the text input field
+ * @param {boolean} [props.showClear=false] - Indicates if the clear button should be displayed
+ * @return {React.ReactElement} The rendered CustomTextField component
+ */
 const CustomTextField: React.FC<CustomTextFieldProps> = ({
   value,
   onChangeText,
