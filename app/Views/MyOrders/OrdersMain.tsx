@@ -42,7 +42,6 @@ const OrdersMain = () => {
       // Check for response
       if (!response || !Array.isArray(response))
         throw new Error("Invalid response");
-
       setOrdersData(response);
       setFilteredOrders(response);
     } catch (err: any) {
@@ -86,49 +85,52 @@ const OrdersMain = () => {
       <SafeAreaView style={styles.main}>
         <ScreenHeader title="My Orders" />
 
-      <OrdersStatus
-        selectedStatus={selectedStatus}
-        setSelectedStatus={setSelectedStatus}
-      />
+        <OrdersStatus
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
+        />
 
-      <OrdersKpis totalOrders={filteredOrders.length} totalItems={totalItems} />
+        <OrdersKpis
+          totalOrders={filteredOrders.length}
+          totalItems={totalItems}
+        />
 
-      {ordersData && ordersData.length > 0 && (
-        <MotiView
-          style={styles.searchContainer}
-          from={{ translateY: 20, opacity: 0 }}
-          animate={{ translateY: 0, opacity: 1 }}
-          transition={{ type: "timing", duration: 600, delay: 400 }}
-        >
-          <CustomTextField
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            placeholder="Search by client name or order number"
-            Icon={Search}
-            onClear={() => setSearchQuery("")}
-            showClear={searchQuery.length > 0}
-          />
-        </MotiView>
-      )}
+        {ordersData && ordersData.length > 0 && (
+          <MotiView
+            style={styles.searchContainer}
+            from={{ translateY: 20, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            transition={{ type: "timing", duration: 600, delay: 400 }}
+          >
+            <CustomTextField
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              placeholder="Search by client name or order number"
+              Icon={Search}
+              onClear={() => setSearchQuery("")}
+              showClear={searchQuery.length > 0}
+            />
+          </MotiView>
+        )}
 
-      <FlatList
-        contentContainerStyle={[
-          styles.listContainer,
-          filteredOrders.length === 0 && ordersData?.length
-            ? { justifyContent: "center" }
-            : {},
-        ]}
-        data={filteredOrders}
-        renderItem={({ item }) => <OrderCard item={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={fetchOrders} />
-        }
-        initialNumToRender={5}
-        maxToRenderPerBatch={5}
-        windowSize={5}
-        onEndReachedThreshold={0.5}
-      />
+        <FlatList
+          contentContainerStyle={[
+            styles.listContainer,
+            filteredOrders.length === 0 && ordersData?.length
+              ? { justifyContent: "center" }
+              : {},
+          ]}
+          data={filteredOrders}
+          renderItem={({ item }) => <OrderCard item={item} />}
+          keyExtractor={(item) => item.id.toString()}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={fetchOrders} />
+          }
+          initialNumToRender={5}
+          maxToRenderPerBatch={5}
+          windowSize={5}
+          onEndReachedThreshold={0.5}
+        />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

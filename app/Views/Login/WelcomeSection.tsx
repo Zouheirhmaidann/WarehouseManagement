@@ -1,7 +1,7 @@
 import { MotiView } from "moti";
 import React, { memo } from "react";
 import { Text } from "react-native";
-import { styles } from "./loginStyles";
+import styles from "./loginStyles";
 
 // Welcome section component
 const WelcomeSection = () => (

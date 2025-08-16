@@ -109,3 +109,10 @@ Use these credentials to log in to the application:
 - AsyncStorage for local data persistence
 - Lucide React Native for consistent iconography
 - React Native Gesture Handler for touch interactions
+
+## The application uses a custom Axios instance that automatically:
+
+- Retrieves the authentication token and username from AsyncStorage
+- Includes them in request headers (`auth-token` and `username`)
+- Handles 401 errors by redirecting to the login screen
+- Manages token persistence across app sessions

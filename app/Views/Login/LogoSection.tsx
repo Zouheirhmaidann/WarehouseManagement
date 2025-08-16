@@ -1,7 +1,7 @@
 import { MotiView } from "moti";
 import React, { memo } from "react";
 import { Image } from "react-native";
-import { styles } from "./loginStyles";
+import styles from "./loginStyles";
 
 // Logo section component
 const LogoSection = () => (

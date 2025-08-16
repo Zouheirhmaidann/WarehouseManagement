@@ -5,7 +5,7 @@ import { Lock, User } from "lucide-react-native";
 import { MotiView } from "moti";
 import React, { memo } from "react";
 import { Pressable, Text } from "react-native";
-import { styles } from "./loginStyles";
+import styles from "./loginStyles";
 
 /**
  * LoginForm Component

@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import LoginForm from "./LoginForm";
-import { styles } from "./loginStyles";
+import styles from "./loginStyles";
 import LogoSection from "./LogoSection";
 import WelcomeSection from "./WelcomeSection";
 
