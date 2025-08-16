@@ -77,7 +77,7 @@ const HomeMain = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.welcomeText} numberOfLines={1}>
-          Welcome, {username || "Zouheir Hmaidscihbsbahhusabhcusabhcan"}
+          Welcome, {username || "Zouheir Hmaidan"}
         </Text>
         <Pressable onPress={handleLogout} style={styles.logoutButton}>
           <LogOut color="#666" size={24} />

@@ -1,5 +1,6 @@
 import { GLOBAL_VAR } from "@/GlobalVar";
-import { presentToast } from "@/services/sharedServices"; // Import the presentToast function
+import { presentToast } from "@/services/sharedServices";
+import { imageLoader } from "@/context/ImageLoader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { router } from "expo-router";
@@ -17,6 +18,8 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
   async (config) => {
     try {
+      // Show the loader
+      imageLoader.show();
       // Fetch the token from AsyncStorage
       const token = await AsyncStorage.getItem(GLOBAL_VAR.AUTH_TOKEN);
       // Fetch the username from AsyncStorage
@@ -41,9 +44,13 @@ AxiosInstance.interceptors.request.use(
 //This is used to handle the response or the error
 AxiosInstance.interceptors.response.use(
   (res) => {
+    // Hide the loader on successful response
+    imageLoader.hide();
     return res;
   },
   async (error) => {
+    // Hide the loader on error
+    imageLoader.hide();
     // Dismiss the keyboard when an error occurs
     Keyboard.dismiss();
     // If the error response status is 401, clear the AsyncStorage and redirect to the login screen

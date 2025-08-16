@@ -1,4 +1,5 @@
 import { useAuth } from "@/context/auth-context";
+import { imageLoader } from "@/context/ImageLoader";
 import React, { memo, useCallback, useState } from "react";
 import {
   Keyboard,
@@ -29,7 +30,12 @@ const LoginMain = () => {
   const handleLogin = useCallback(() => {
     // Implement login logic here
     console.log("Login attempted", { username, password });
-    setToken("bla bla");
+    imageLoader.show();
+
+    setTimeout(() => {
+      imageLoader.hide();
+      setToken("bla bla");
+    }, 4000);
   }, [username, password, setToken]);
 
   return (
