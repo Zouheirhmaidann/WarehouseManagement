@@ -1,7 +1,7 @@
 import { GLOBAL_VAR } from "@/GlobalVar";
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -83,3 +83,5 @@ export const styles = StyleSheet.create({
     shadowColor: "#ccc",
   },
 });
+
+export default styles;

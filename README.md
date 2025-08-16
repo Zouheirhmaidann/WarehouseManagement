@@ -4,10 +4,14 @@ A React Native mobile application for managing warehouse operations, built with 
 
 ## Features
 
-- User Authentication
-- Home Dashboard with Quick Actions
-- Barcode Scanning for Items
-- Order Management
+- User Authentication with secure token management
+- Home Dashboard with Quick Actions and animated cards
+- Real-time Barcode Scanning with cooldown prevention
+- Order Management with search and filtering
+- Order Status tracking and KPIs
+- Modern UI with smooth animations using Moti
+- Keyboard-aware forms with auto-dismissal
+- Toast notifications for user feedback
 
 ## Project Structure
 
@@ -58,7 +62,14 @@ npx expo start -c
 yarn expo start -c
 ```
 
-4. Follow the Expo CLI instructions to run on your desired platform (iOS/Android)
+4. Configure the backend URL in `GlobalVar.ts`:
+
+```typescript
+// Update BACKEND_URL to point to your backend server
+BACKEND_URL: "http://your-backend-server:3001/api";
+```
+
+5. Follow the Expo CLI instructions to run on your desired platform (iOS/Android)
 
 ## Demo Credentials
 
@@ -79,14 +90,22 @@ Use these credentials to log in to the application:
 
 - Use TypeScript for type safety
 - Follow the established component structure
-- Implement proper error handling
-- Maintain consistent styling
-- Use memoization for performance optimization
+- Implement proper error handling and validation
+- Maintain consistent styling with shared components
+- Use memoization (memo, useCallback) for performance optimization
+- Follow atomic design principles for component organization
+- Implement proper keyboard handling and form management
+- Use proper error boundaries and loading states
 
 ## Built With
 
 - React Native
-- Expo Router
-- TypeScript
-- Moti (for animations)
-- React Native Reanimated
+- Expo Router for type-safe navigation
+- TypeScript for static typing
+- Moti and React Native Reanimated for smooth animations
+- Expo Barcode Scanner for scanning functionality
+- React Native Toast Message for notifications
+- Axios for API communication
+- AsyncStorage for local data persistence
+- Lucide React Native for consistent iconography
+- React Native Gesture Handler for touch interactions
