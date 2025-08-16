@@ -17,11 +17,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Function to set the token and handle navigation based on its value
   const setTheToken = async (token: string | null) => {
     setToken(token);
+    // if token is null, redirect to login screen
     if (token === null) {
       AsyncStorage.clear();
       router.replace("/Views/Login/LoginMain");
     } else {
+      // if token is provded, redirect to the home screen
       await AsyncStorage.setItem(GLOBAL_VAR.AUTH_TOKEN, token);
+      router.replace("/(tabs)/Home");
     }
   };
   // useEffect to load the token from AsyncStorage when the component mounts
