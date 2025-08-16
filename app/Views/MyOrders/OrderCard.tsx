@@ -1,52 +1,63 @@
 import { Order } from "@/types/OrderTypes";
 import { MotiView } from "moti";
+import { useRouter } from "expo-router";
 import React, { memo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 // Component the renders the OrdersCard
 const OrderCard = ({ item }: { item: Order }) => {
+  const router = useRouter();
+
+  const handlePress = () => {
+    router.push({
+      pathname: "/Views/MyOrders/BarcodeScan/BarcodeScanScreen",
+      params: { order: JSON.stringify(item) },
+    });
+  };
   return (
-    <MotiView
-      style={styles.container}
-      from={{ opacity: 0, translateY: 20 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{ type: "timing", duration: 500 }}
-    >
-      <View style={styles.header}>
-        <Text style={styles.orderNumber}>{item.order_number}</Text>
-        <Text style={styles.date}>
-          {new Date(item.created_at).toLocaleDateString()}
-        </Text>
-      </View>
-
-      <View style={styles.content}>
-        <View style={styles.row}>
-          <Text style={styles.label}>Client:</Text>
-          <Text style={styles.value}>{item.client_name}</Text>
+    <Pressable onPress={handlePress}>
+      <MotiView
+        style={styles.container}
+        from={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ type: "timing", duration: 500 }}
+      >
+        <View style={styles.header}>
+          <Text style={styles.orderNumber}>{item.order_number}</Text>
+          <Text style={styles.date}>
+            {new Date(item.created_at).toLocaleDateString()}
+          </Text>
         </View>
 
-        <View style={styles.row}>
-          <Text style={styles.label}>Recipient:</Text>
-          <Text style={styles.value}>{item.recipient_name}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Location:</Text>
-          <Text style={styles.value}>{item.location_en}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Items:</Text>
-          <Text style={styles.value}>{item.num_items}</Text>
-        </View>
-
-        {item.notes && (
-          <View style={styles.notes}>
-            <Text style={styles.label}>Notes:</Text>
-            <Text style={styles.noteText}>{item.notes}</Text>
+        <View style={styles.content}>
+          <View style={styles.row}>
+            <Text style={styles.label}>Client:</Text>
+            <Text style={styles.value}>{item.client_name}</Text>
           </View>
-        )}
-      </View>
-    </MotiView>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Recipient:</Text>
+            <Text style={styles.value}>{item.recipient_name}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Location:</Text>
+            <Text style={styles.value}>{item.location_en}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Items:</Text>
+            <Text style={styles.value}>{item.num_items}</Text>
+          </View>
+
+          {item.notes && (
+            <View style={styles.notes}>
+              <Text style={styles.label}>Notes:</Text>
+              <Text style={styles.noteText}>{item.notes}</Text>
+            </View>
+          )}
+        </View>
+      </MotiView>
+    </Pressable>
   );
 };
 

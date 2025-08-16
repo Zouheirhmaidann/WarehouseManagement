@@ -103,8 +103,10 @@ const LoginForm = ({
         style={({ pressed }) => [
           styles.loginButton,
           pressed && styles.loginButtonPressed,
+          (!username || !password) && styles.loginButtonDisabled,
         ]}
         onPress={onLogin}
+        disabled={!username || !password}
       >
         <Text style={styles.loginButtonText}>Login</Text>
       </Pressable>

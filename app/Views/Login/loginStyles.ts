@@ -78,4 +78,8 @@ export const styles = StyleSheet.create({
     fontSize: Math.min(16, GLOBAL_VAR.SCREEN_WIDTH * 0.04),
     color: "#666",
   },
+  loginButtonDisabled: {
+    backgroundColor: "#ccc",
+    shadowColor: "#ccc",
+  },
 });
