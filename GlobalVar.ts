@@ -6,7 +6,7 @@ export const GLOBAL_VAR = {
   INACTIVE_TAB_ICON_COLOR: "#ccc",
   AUTH_TOKEN: "auth_token",
   USERNAME: "username",
-  BACKEND_URL: "https://api.example.com",
+  BACKEND_URL: "http://192.168.0.106:3001/api",
   SCREEN_WIDTH: Dimensions.get("window").width,
   SCREEN_HEIGHT: Dimensions.get("window").height,
 };

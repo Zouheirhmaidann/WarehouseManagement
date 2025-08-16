@@ -1,6 +1,6 @@
+import { imageLoader } from "@/context/ImageLoader";
 import { GLOBAL_VAR } from "@/GlobalVar";
 import { presentToast } from "@/services/sharedServices";
-import { imageLoader } from "@/context/ImageLoader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { router } from "expo-router";
@@ -29,6 +29,7 @@ AxiosInstance.interceptors.request.use(
       // If the token is not null and the username exists, set the auth token in the headers
       if (token !== null && username && !config.headers["auth-token"]) {
         config.headers["auth-token"] = token;
+        config.headers.username = username;
         config.baseURL = GLOBAL_VAR.BACKEND_URL;
       }
       return config;
@@ -62,6 +63,7 @@ AxiosInstance.interceptors.response.use(
     }
     presentToast(
       "error",
+      "Login Failed",
       error?.response?.data || error.message || "An error occurred"
     );
   }

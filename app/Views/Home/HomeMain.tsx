@@ -2,8 +2,9 @@ import { GLOBAL_VAR } from "@/GlobalVar";
 import CardComponent from "@/components/CardComponent";
 import { LogoutPopup } from "@/components/LogoutPopup";
 import { useAuth } from "@/context/auth-context";
+import { MENU_ITEMS } from "@/mock/cardItems";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { LogOut, Move, Package, Scan, Truck } from "lucide-react-native";
+import { LogOut } from "lucide-react-native";
 import { MotiView } from "moti";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
@@ -14,13 +15,6 @@ import {
   Text,
   View,
 } from "react-native";
-
-const MENU_ITEMS = [
-  { id: 1, title: "Associate RFIDs", icon: Scan, color: "#4CAF50" },
-  { id: 2, title: "Store Products", icon: Package, color: "#2196F3" },
-  { id: 3, title: "My Orders", icon: Truck, color: "#FF9800" },
-  { id: 4, title: "Move Items", icon: Move, color: "#9C27B0" },
-];
 
 const HomeMain = () => {
   const [username, setUsername] = useState("");
@@ -69,6 +63,8 @@ const HomeMain = () => {
         title={item.title}
         icon={item.icon}
         iconWrapperColor={item.color}
+        isFunctional={item.isFunctional}
+        screenRoute={item.screenRoute}
       />
     </MotiView>
   );

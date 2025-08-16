@@ -1,4 +1,4 @@
-import { Eye, EyeOff, LucideIcon } from "lucide-react-native";
+import { Eye, EyeOff, LucideIcon, X } from "lucide-react-native";
 import React, { memo, useState } from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
@@ -9,6 +9,8 @@ interface CustomTextFieldProps {
   isPassword?: boolean;
   Icon: LucideIcon;
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
+  onClear?: () => void;
+  showClear?: boolean;
 }
 
 const CustomTextField: React.FC<CustomTextFieldProps> = ({
@@ -18,6 +20,8 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
   isPassword = false,
   Icon,
   autoCapitalize = "none",
+  onClear,
+  showClear = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -33,6 +37,11 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
         autoCapitalize={autoCapitalize}
         placeholderTextColor="#999"
       />
+      {showClear && !isPassword && (
+        <Pressable onPress={onClear} style={styles.passwordToggle}>
+          <X size={20} color="#666" />
+        </Pressable>
+      )}
       {isPassword && (
         <Pressable
           onPress={() => setShowPassword(!showPassword)}

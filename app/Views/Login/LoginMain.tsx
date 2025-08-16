@@ -1,5 +1,8 @@
 import { useAuth } from "@/context/auth-context";
-import { imageLoader } from "@/context/ImageLoader";
+import { GLOBAL_VAR } from "@/GlobalVar";
+import { loginUser } from "@/services/LoginServices/loginFunctions";
+import { presentToast } from "@/services/sharedServices";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { memo, useCallback, useState } from "react";
 import {
   Keyboard,
@@ -26,16 +29,20 @@ const LoginMain = () => {
   const [password, setPassword] = useState("");
 
   const { setToken } = useAuth();
-
-  const handleLogin = useCallback(() => {
-    // Implement login logic here
-    console.log("Login attempted", { username, password });
-    imageLoader.show();
-
-    setTimeout(() => {
-      imageLoader.hide();
-      setToken("bla bla");
-    }, 4000);
+  // Function to handle the login
+  const handleLogin = useCallback(async () => {
+    // Call the login function
+    const response = await loginUser(username, password);
+    // Check if there was an error
+    if (response?.error) throw Error(response?.message);
+    // Check for the token
+    if (response?.token) {
+      // set the username in async storage
+      await AsyncStorage.setItem(GLOBAL_VAR.USERNAME, response?.user?.username);
+      // set the token
+      setToken(response.token);
+      presentToast("success", "Login successful");
+    }
   }, [username, password, setToken]);
 
   return (

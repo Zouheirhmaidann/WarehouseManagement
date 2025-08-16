@@ -1,7 +1,14 @@
 import { GLOBAL_VAR } from "@/GlobalVar";
+import { router } from "expo-router";
 import { LucideIcon } from "lucide-react-native";
-import React, { memo } from "react";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import React, { memo, useCallback } from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface CardComponentProps {
   icon: LucideIcon;
@@ -9,6 +16,7 @@ interface CardComponentProps {
   title: string;
   isFunctional?: boolean;
   style?: ViewStyle;
+  screenRoute?: string;
 }
 
 const CardComponent = ({
@@ -16,10 +24,21 @@ const CardComponent = ({
   iconWrapperColor,
   title,
   isFunctional = true,
+  screenRoute,
   style,
 }: CardComponentProps) => {
+  // Function to redirect to the screen
+  const handleNavigation = useCallback(() => {
+    if (!screenRoute) return;
+    // Naivgate to the desired screen
+    router.push(screenRoute as unknown as any);
+  }, [screenRoute]);
   return (
-    <View style={[styles.container, !isFunctional && styles.disabled, style]}>
+    <TouchableOpacity
+      style={[styles.container, !isFunctional && styles.disabled, style]}
+      onPress={handleNavigation}
+      disabled={!isFunctional}
+    >
       <View style={[styles.iconWrapper, { backgroundColor: iconWrapperColor }]}>
         <Icon color="white" size={24} />
       </View>
@@ -29,7 +48,7 @@ const CardComponent = ({
       >
         {title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
