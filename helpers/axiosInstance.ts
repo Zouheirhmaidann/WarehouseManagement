@@ -18,14 +18,16 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
   async (config) => {
     try {
+      Keyboard.dismiss();
       // Show the loader
       imageLoader.show();
+
       // Fetch the token from AsyncStorage
       const token = await AsyncStorage.getItem(GLOBAL_VAR.AUTH_TOKEN);
       // Fetch the username from AsyncStorage
       const username = await AsyncStorage.getItem(GLOBAL_VAR.USERNAME);
       // Dismiss the keyboard before making the request
-      Keyboard.dismiss();
+
       // If the token is not null and the username exists, set the auth token in the headers
       if (token !== null && username && !config.headers["auth-token"]) {
         config.headers["auth-token"] = token;
@@ -57,7 +59,6 @@ AxiosInstance.interceptors.response.use(
     // If the error response status is 401, clear the AsyncStorage and redirect to the login screen
     if (error?.response?.status === 401) {
       await AsyncStorage.clear();
-      presentToast("error", "Session expired, please login again");
       router.replace("/Views/Login/LoginMain");
       return Promise.reject(error);
     }

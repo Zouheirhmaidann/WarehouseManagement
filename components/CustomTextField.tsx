@@ -11,6 +11,7 @@ interface CustomTextFieldProps {
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   onClear?: () => void;
   showClear?: boolean;
+  inputHeight?: number;
 }
 
 /**
@@ -39,14 +40,15 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
   autoCapitalize = "none",
   onClear,
   showClear = false,
+  inputHeight = 50,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { height: inputHeight }]}>
       <Icon size={20} color="#666" style={styles.icon} />
       <TextInput
-        style={styles.input}
+        style={[styles.input]}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}

@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#eee",
   },
   welcomeText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "600",
     color: "#333",
     width: GLOBAL_VAR.SCREEN_WIDTH - 100,

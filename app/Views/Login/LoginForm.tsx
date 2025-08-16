@@ -61,6 +61,7 @@ const LoginForm = ({
         placeholder="Username"
         Icon={User}
         autoCapitalize="none"
+        inputHeight={60}
       />
     </MotiView>
 
@@ -80,6 +81,7 @@ const LoginForm = ({
         placeholder="Password"
         Icon={Lock}
         isPassword
+        inputHeight={60}
       />
     </MotiView>
 

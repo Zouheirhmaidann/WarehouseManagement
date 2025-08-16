@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Warehouse Management App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application for managing warehouse operations, built with Expo Router and modern React practices.
 
-## Get started
+## Features
 
-1. Install dependencies
+- User Authentication
+- Home Dashboard with Quick Actions
+- Barcode Scanning for Items
+- Order Management
 
-   ```bash
-   npm install
-   ```
+## Project Structure
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+├── app/                    # Main application screens
+│   ├── (tabs)/            # Tab-based navigation screens
+│   └── Views/             # Feature-specific views
+├── assets/                # Static assets (images, fonts)
+├── components/            # Reusable UI components
+├── context/               # React Context providers
+├── helpers/               # Utility functions and configurations
+├── mock/                  # Mock data for development
+├── services/              # API and business logic services
+└── types/                 # TypeScript type definitions
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-## Learn more
+### Prerequisites
 
-To learn more about developing your project with Expo, look at the following resources:
+- Node.js (v16 or later)
+- npm or yarn
+- Expo CLI
+- iOS Simulator or Android Emulator (for development)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Installation
 
-## Join the community
+1. Clone the repository
 
-Join our community of developers creating universal apps.
+```bash
+git clone [git@github.com:Zouheirhmaidann/WarehouseManagement.git]
+cd WarehouseManagement
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server
+
+```bash
+npx expo start -c
+# or
+yarn expo start -c
+```
+
+4. Follow the Expo CLI instructions to run on your desired platform (iOS/Android)
+
+## Demo Credentials
+
+Use these credentials to log in to the application:
+
+- Username: wakilni.demo
+- Password: Wakilni@Test
+
+## Key Components
+
+- `LogoutPopup`: Handles user logout confirmation
+- `BarcodeScan`: Manages barcode scanning functionality
+- `CardComponent`: Reusable card UI component
+- `CustomTextField`: Reusable custom input field component
+- `ScreenHeader`: Reusable consistent header across screens
+
+## Development Guidelines
+
+- Use TypeScript for type safety
+- Follow the established component structure
+- Implement proper error handling
+- Maintain consistent styling
+- Use memoization for performance optimization
+
+## Built With
+
+- React Native
+- Expo Router
+- TypeScript
+- Moti (for animations)
+- React Native Reanimated

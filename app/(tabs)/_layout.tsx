@@ -2,7 +2,7 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { GLOBAL_VAR } from "@/GlobalVar";
-import { House } from "lucide-react-native";
+import { House, LogOut, Settings } from "lucide-react-native";
 // Define a function to determine the icon color based on the focused state
 const iconColor = (focused: boolean) => {
   return {
@@ -31,6 +31,24 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ focused }) => (
             <House color={iconColor(focused).color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ focused }) => (
+            <Settings color={iconColor(focused).color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Logout"
+        options={{
+          title: "Logout",
+          tabBarIcon: ({ focused }) => (
+            <LogOut color={iconColor(focused).color} />
           ),
         }}
       />
