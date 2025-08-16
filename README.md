@@ -50,16 +50,13 @@ cd WarehouseManagement
 
 ```bash
 npm install
-# or
-yarn install
+
 ```
 
 3. Start the development server
 
 ```bash
 npx expo start -c
-# or
-yarn expo start -c
 ```
 
 4. Configure the backend URL in `GlobalVar.ts`:
