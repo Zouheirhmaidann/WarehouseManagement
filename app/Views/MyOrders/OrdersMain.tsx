@@ -8,9 +8,11 @@ import { MotiView } from "moti";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   FlatList,
+  Keyboard,
   RefreshControl,
   SafeAreaView,
   StyleSheet,
+  TouchableWithoutFeedback,
 } from "react-native";
 import OrderCard from "./OrderCard";
 import OrdersKpis from "./OrdersKpis";
@@ -80,8 +82,9 @@ const OrdersMain = () => {
   );
 
   return (
-    <SafeAreaView style={styles.main}>
-      <ScreenHeader title="My Orders" />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={styles.main}>
+        <ScreenHeader title="My Orders" />
 
       <OrdersStatus
         selectedStatus={selectedStatus}
@@ -126,7 +129,8 @@ const OrdersMain = () => {
         windowSize={5}
         onEndReachedThreshold={0.5}
       />
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
