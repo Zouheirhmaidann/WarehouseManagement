@@ -18,10 +18,10 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
   async (config) => {
     try {
+      // Dismiss the keyboard before making the request
       Keyboard.dismiss();
       // Show the loader
       imageLoader.show();
-
       // Fetch the token from AsyncStorage
       const token = await AsyncStorage.getItem(GLOBAL_VAR.AUTH_TOKEN);
       // Fetch the username from AsyncStorage

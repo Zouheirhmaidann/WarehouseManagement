@@ -9,6 +9,7 @@ import { MotiView } from "moti";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   FlatList,
+  Platform,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -70,7 +71,12 @@ const HomeMain = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        Platform.OS === "android" && { paddingTop: 25 },
+      ]}
+    >
       <View style={styles.header}>
         <Text style={styles.welcomeText} numberOfLines={1}>
           Welcome, {username || "Zouheir Hmaidan"}

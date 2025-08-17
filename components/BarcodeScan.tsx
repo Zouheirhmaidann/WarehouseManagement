@@ -1,8 +1,16 @@
 import { Order } from "@/types/OrderTypes";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
 import React, { memo, useEffect, useRef, useState } from "react";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 interface BarcodeScanProps {
   order: Order;
@@ -78,7 +86,10 @@ const BarcodeScan = ({ order }: BarcodeScanProps) => {
           barcodeTypes: ["ean13"],
         }}
       />
-
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <ChevronLeft size={25} color={"black"} />
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
       <View style={styles.scannerOverlay}>
         <View style={styles.scannerFrame} />
       </View>
@@ -199,6 +210,22 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.8)",
     padding: 20,
     alignItems: "center",
+  },
+  backButton: {
+    position: "absolute",
+    top: 40,
+    left: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    zIndex: 1,
+    backgroundColor: "#fff",
+    padding: 10,
+    justifyContent: "center",
+    borderRadius: 20,
+  },
+  backButtonText: {
+    color: "black",
+    fontSize: 18,
   },
 });
 // Memoize the component to prevent unnecessary re-renders and improve performance

@@ -46,12 +46,27 @@ class ImageLoader {
 export const ImageLoaderComponent: React.FC = () => {
   const [isVisible, setIsVisible] = React.useState(false);
 
+  const [ready, setReady] = React.useState(false);
+
   React.useEffect(() => {
     ImageLoader.getInstance().setVisibilityHandler(setIsVisible);
   }, []);
 
+  React.useEffect(() => {
+    const t = setTimeout(() => setReady(true), 200); // wait a tick
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!ready) return null;
+
   return (
-    <Modal visible={isVisible} transparent animationType="fade">
+    <Modal
+      visible={isVisible}
+      transparent
+      animationType="fade"
+      presentationStyle="overFullScreen"
+      statusBarTranslucent={true}
+    >
       <MotiView style={styles.overlay}>
         <MotiView
           from={{
@@ -82,6 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 1000,
   },
   logo: {
     width: 150,

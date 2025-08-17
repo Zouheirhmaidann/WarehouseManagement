@@ -2,7 +2,13 @@ import { GLOBAL_VAR } from "@/GlobalVar";
 import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import React, { memo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 /**
  * ScreenHeader component
@@ -19,6 +25,7 @@ const ScreenHeader = ({ title }: { title: string }) => {
       style={[
         styles.headerContainer,
         { height: GLOBAL_VAR.SCREEN_HEIGHT * 0.07 },
+        Platform.OS === "android" && { marginTop: 25 },
       ]}
     >
       <TouchableOpacity
